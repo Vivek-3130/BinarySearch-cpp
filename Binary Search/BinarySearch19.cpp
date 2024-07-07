@@ -9,7 +9,7 @@ using namespace std;
 //     int n = nums.size();
 //     if(n <= 0) return -1;
 //     for(int i =0 ;i< n-1; i++){
-//         if(nums[i] <= k){
+//          if(nums[i] <= k){
 //             k++;
 //         }
 //         else break;
@@ -44,11 +44,11 @@ int findKthMissing(vector<int> &nums, int k){
 
 int main() {
    vector<int> nums = {2,3,4,7,11}; // Example array
-    int k = 5; // Example k value
+   int k = 5; // Example k value
 
-    int kthMissing = findKthMissing(nums, k);
-    cout << "The " << k << "th missing number is: " << kthMissing << endl;
+   int kthMissing = findKthMissing(nums, k);
+   cout << "The " << k << "th missing number is: " << kthMissing << endl;
 
-    return 0;
+   return 0;
 }
 

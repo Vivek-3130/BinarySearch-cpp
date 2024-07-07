@@ -18,7 +18,7 @@ int noOfDays(vector<int> &weight, int cap) {
     for(int i = 0; i < weight.size(); i++) {
         if(currentCap + weight[i] <= cap) {
             currentCap += weight[i];
-        } else {
+        } else {       //jese hi capacity se upr jaye turant second day shift krdo
             days++;
             currentCap = weight[i];
         }
@@ -27,37 +27,37 @@ int noOfDays(vector<int> &weight, int cap) {
 }
 
 // Brute Foce: O(N^2)
-// int leastWeightCapacity(vector<int>& weight, int days) {
-//     int totalWeight = sumOfWeight(weight);
-//     int leastWeight = totalWeight; // Initialize leastWeight to totalWeight
+int leastWeightCapacity(vector<int>& weight, int days) {
+    int totalWeight = sumOfWeight(weight);
+    int leastWeight = totalWeight; // Initialize leastWeight to totalWeight
     
-//     for (int cap = 1; cap <= totalWeight; cap++) {
-//         int requiredDays = noOfDays(weight, cap);
-//         if (requiredDays <= days) {
-//             leastWeight = min(leastWeight, cap); // Update leastWeight if a better solution is found
-//         }
-//     }
-     
-//     return leastWeight;
-// }
-
-// Optimised Soln: log2(sum - max + 1)*O(N)
-int leastWeightCapacity(vector<int>& weight, int days){
-    int low = *max_element(weight.begin(),weight.end());
-    int high = sumOfWeight(weight);
-    int mid;
-    while(low < high){
-        mid = (low + high)/2;
-        int requiredDays=noOfDays(weight,mid);
-        if(requiredDays<=days){
-            high = mid - 1;
-        }
-        else{
-            low = mid + 1;
+    for (int cap = 1; cap <= totalWeight; cap++) {
+        int requiredDays = noOfDays(weight, cap);
+        if (requiredDays <= days) {
+            leastWeight = min(leastWeight, cap); // Update leastWeight if a better solution is found
         }
     }
-    return low;
+     
+    return leastWeight;
 }
+  
+// Optimised Soln: log2(sum - max + 1)*O(N)
+// int leastWeightCapacity(vector<int>& weight, int days){
+//     int low = *max_element(weight.begin(),weight.end());
+//     int high = sumOfWeight(weight);
+//     int mid;
+//     while(low < high){
+//         mid = (low + high)/2;
+//         int requiredDays=noOfDays(weight,mid);
+//         if(requiredDays<=days){
+//             high = mid - 1;
+//         }
+//         else{
+//             low = mid + 1;
+//         }
+//     }
+//     return low;
+// }
 
 int main() {
     vector<int> weight = {1,2,3,4,5,6,7,8,9,10};
